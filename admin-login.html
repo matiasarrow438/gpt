@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-login-container {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+        }
+
+        .admin-login-container h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background: #222;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #ff3333;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+
+        .admin-login-btn {
+            background: #ff3333;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .admin-login-btn:hover {
+            background: #cc0000;
+        }
+
+        .error-message {
+            color: #ff3333;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+            text-align: center;
+        }
+
+        .security-notice {
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .admin-header {
+            text-align: center;
+            color: #ff3333;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-login-container">
+        <div class="admin-header">Restricted Access</div>
+        <h1>Admin Login</h1>
+        <form id="admin-login-form" onsubmit="return handleAdminLogin(event)">
+            <div class="form-group">
+                <label for="username">Admin Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Admin Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="security-key">Security Key</label>
+                <input type="password" id="security-key" name="security-key" required>
+            </div>
+
+            <div class="error-message" id="error-message"></div>
+
+            <button type="submit" class="admin-login-btn">Access Admin Panel</button>
+
+            <div class="security-notice">
+                All login attempts are logged and monitored
+            </div>
+        </form>
+    </div>
+
+    <script>
+        async function handleAdminLogin(event) {
+            event.preventDefault();
+            
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.style.display = 'none';
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const securityKey = document.getElementById('security-key').value;
+
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        securityKey
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store admin token
+                    localStorage.setItem('adminToken', data.token);
+                    // Redirect to admin panel
+                    window.location.href = '/admin.html';
+                } else {
+                    throw new Error(data.message || 'Invalid credentials');
+                }
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+            }
+
+            return false;
+        }
+
+        // Prevent access if not coming from authorized location
+        if (document.referrer && !document.referrer.includes(window.location.hostname)) {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html> 

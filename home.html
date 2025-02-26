@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnCash - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.98);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(255, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .navbar-logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ff3333;
+        }
+
+        .navbar-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+        }
+
+        .login-btn:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: #ff3333;
+        }
+
+        .signup-btn-nav {
+            background: #ff3333;
+            color: white;
+            border: none;
+        }
+
+        .signup-btn-nav:hover {
+            background: #e62e2e;
+        }
+
+        .main-content {
+            padding: 120px 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .welcome-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .welcome-section p {
+            font-size: 20px;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .signup-btn {
+            background: #ff3333;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .signup-btn:hover {
+            background: #e62e2e;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff3333;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: #ff3333;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .feature-card p {
+            color: #888;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+        }
+
+        .stat-card h3 {
+            color: #888;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .stat-number {
+            color: #ff3333;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-section h1 {
+                font-size: 36px;
+            }
+
+            .welcome-section p {
+                font-size: 18px;
+            }
+
+            .feature-card, .stat-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="home.html" class="navbar-logo">EarnCash</a>
+        <div class="navbar-links">
+            <a href="earn.html" class="nav-link">Earn</a>
+            <a href="withdraw.html" class="nav-link">Withdraw</a>
+            <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+            <a href="about.html" class="nav-link">About</a>
+        </div>
+        <div class="navbar-buttons">
+            <button class="nav-btn login-btn" onclick="window.location.href='login.html'">Login</button>
+            <button class="nav-btn signup-btn-nav" onclick="window.location.href='signup.html'">Sign Up</button>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="welcome-section">
+            <h1>Welcome to EarnCash</h1>
+            <p>Complete tasks and earn money online</p>
+            <button class="signup-btn" onclick="window.location.href='signup.html'">Get Started</button>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Multiple Ways to Earn</h3>
+                <p>Choose from various tasks and offers to maximize your earnings</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Payouts</h3>
+                <p>Get paid quickly through PayPal, Bitcoin, or Bank Transfer</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Daily Bonuses</h3>
+                <p>Earn extra rewards by completing daily tasks</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3>Referral Program</h3>
+                <p>Invite friends and earn a percentage of their earnings</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <div class="stat-number">10,000+</div>
+            </div>
+            <div class="stat-card">
+                <h3>Paid Out</h3>
+                <div class="stat-number">$50,000+</div>
+            </div>
+            <div class="stat-card">
+                <h3>Daily Tasks</h3>
+                <div class="stat-number">1,000+</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+        

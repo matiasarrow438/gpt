@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarnCash - About</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111;
+            font-family: 'Inter', Arial, sans-serif;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .main-content {
+            max-width: 900px;
+            margin: 130px auto 60px;
+            padding: 0 40px;
+        }
+
+        .about-section {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+        }
+
+        .about-section h1 {
+            color: #ff3333;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .about-section p {
+            color: #888;
+            font-size: 15px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            color: #ff3333;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .value-card {
+            background: #1a1a1a;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+        }
+
+        .value-icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .value-card h3 {
+            color: #ff3333;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .value-card p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 20px;
+            }
+            
+            .about-section {
+                padding: 20px;
+            }
+        }
+
+        /* Add the fixed header styles */
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar {
+            background: rgba(26, 26, 26, 0.98);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ff3333;
+        }
+
+        .navbar-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+        }
+
+        .login-btn:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: #ff3333;
+        }
+
+        .signup-btn-nav {
+            background: #ff3333;
+            color: white;
+            border: none;
+        }
+
+        .signup-btn-nav:hover {
+            background: #e62e2e;
+        }
+
+        .live-bar {
+            background: rgba(26, 26, 26, 0.98);
+            padding: 8px 40px;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .live-tasks-scroll {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .live-tasks-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .live-task-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 12px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 6px;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        .task-user {
+            color: #ff3333;
+            font-weight: 500;
+        }
+
+        .task-action {
+            color: #888;
+        }
+
+        .task-amount {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .fixed-header.scrolled .navbar,
+        .fixed-header.scrolled .live-bar {
+            background: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-header">
+        <nav class="navbar">
+            <a href="home.html" class="navbar-logo">EarnCash</a>
+            <div class="navbar-links">
+                <a href="earn.html" class="nav-link">Earn</a>
+                <a href="withdraw.html" class="nav-link">Withdraw</a>
+                <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="navbar-buttons">
+                <button class="nav-btn login-btn" onclick="window.location.href='login.html'">Login</button>
+                <button class="nav-btn signup-btn-nav" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </nav>
+        
+        <div class="live-bar">
+            <div class="live-tasks-scroll">
+                <div class="live-tasks-container">
+                    <div class="live-task-item">
+                        <span class="task-user">Alex</span>
+                        <span class="task-action">completed Survey</span>
+                        <span class="task-amount">+$2.50</span>
+                    </div>
+                    <div class="live-task-item">
+                        <span class="task-user">Sarah</span>
+                        <span class="task-action">completed Mobile App</span>
+                        <span class="task-amount">+$5.00</span>
+                    </div>
+                    <div class="live-task-item">
+                        <span class="task-user">Mike</span>
+                        <span class="task-action">completed Offer</span>
+                        <span class="task-amount">+$10.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="about-section">
+            <h1>About EarnCash</h1>
+            <p>EarnCash is a leading online platform that connects users with opportunities to earn money through various tasks and activities. Founded in 2024, we've quickly grown to become one of the most trusted earning platforms in the industry.</p>
+            
+            <p>Our mission is to provide accessible earning opportunities to everyone, anywhere in the world. We believe in transparency, fair compensation, and creating a user-friendly environment where anyone can start earning immediately.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$500,000+</div>
+                    <div class="stat-label">Paid to Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Offer Partners</div>
+                </div>
+            </div>
+
+            <h1>Our Values</h1>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Transparency</h3>
+                    <p>We believe in complete transparency in our operations, earnings, and payment processes.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Fast Payments</h3>
+                    <p>Get your earnings quickly with our efficient payment processing system.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🛡️</div>
+                    <h3>Security</h3>
+                    <p>Your security is our priority. We use advanced measures to protect your data and earnings.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💪</div>
+                    <h3>User Support</h3>
+                    <p>Our dedicated support team is always ready to help you with any questions or concerns.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.fixed-header');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

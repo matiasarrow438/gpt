@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn - EarnCash</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            line-height: 1.6;
+        }
+
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar {
+            background: rgba(26, 26, 26, 0.98);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #ff3333;
+        }
+
+        .navbar-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+        }
+
+        .login-btn:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: #ff3333;
+        }
+
+        .signup-btn-nav {
+            background: #ff3333;
+            color: white;
+            border: none;
+        }
+
+        .signup-btn-nav:hover {
+            background: #e62e2e;
+        }
+
+        .live-bar {
+            background: rgba(26, 26, 26, 0.98);
+            padding: 8px 40px;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .live-tasks-scroll {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .live-tasks-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .live-task-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 12px;
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 6px;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        .task-user {
+            color: #ff3333;
+            font-weight: 500;
+        }
+
+        .task-action {
+            color: #888;
+        }
+
+        .task-amount {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .main-content {
+            margin-top: 130px; /* Height of navbar (80px) + live bar (50px) */
+            padding: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #888;
+            font-size: 18px;
+        }
+
+        .earn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .earn-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .earn-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .offerwall-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Add these new styles for the scrolled state */
+        .fixed-header.scrolled .navbar,
+        .fixed-header.scrolled .live-bar {
+            background: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-header">
+        <nav class="navbar">
+            <a href="home.html" class="navbar-logo">EarnCash</a>
+            <div class="navbar-links">
+                <a href="earn.html" class="nav-link">Earn</a>
+                <a href="withdraw.html" class="nav-link">Withdraw</a>
+                <a href="leaderboard.html" class="nav-link">Leaderboard</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="navbar-buttons">
+                <button class="nav-btn login-btn" onclick="window.location.href='login.html'">Login</button>
+                <button class="nav-btn signup-btn-nav" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </nav>
+        
+        <div class="live-bar">
+            <div class="live-tasks-scroll">
+                <div class="live-tasks-container">
+                    <div class="live-task-item">
+                        <span class="task-user">Alex</span>
+                        <span class="task-action">completed Survey</span>
+                        <span class="task-amount">+$2.50</span>
+                    </div>
+                    <div class="live-task-item">
+                        <span class="task-user">Sarah</span>
+                        <span class="task-action">completed Mobile App</span>
+                        <span class="task-amount">+$5.00</span>
+                    </div>
+                    <div class="live-task-item">
+                        <span class="task-user">Mike</span>
+                        <span class="task-action">completed Offer</span>
+                        <span class="task-amount">+$10.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="page-header">
+            <h1>Ways to Earn</h1>
+            <p>Complete tasks and earn money</p>
+        </div>
+
+        <div class="earn-grid">
+            <!-- Notik -->
+            <div class="earn-card">
+                <img src="assets/notik.jpg" alt="Notik Offerwall" class="offerwall-image" onclick="redirectToOfferwall('notik')">
+            </div>
+
+            <!-- AdGate -->
+            <div class="earn-card">
+                <img src="assets/adgate.png" alt="AdGate Offerwall" class="offerwall-image" onclick="redirectToOfferwall('adgate')">
+            </div>
+
+            <!-- Torox -->
+            <div class="earn-card">
+                <img src="assets/torox.jpg" alt="Torox Offerwall" class="offerwall-image" onclick="redirectToOfferwall('torox')">
+            </div>
+
+            <!-- Ayet -->
+            <div class="earn-card">
+                <img src="assets/ayet.jpg" alt="Ayet Offerwall" class="offerwall-image" onclick="redirectToOfferwall('ayet')">
+            </div>
+
+            <!-- Adscend Media -->
+            <div class="earn-card">
+                <img src="assets/adscend.jpg" alt="Adscend Media Offerwall" class="offerwall-image" onclick="redirectToOfferwall('adscend')">
+            </div>
+
+            <!-- MMWall -->
+            <div class="earn-card">
+                <img src="assets/mmwall.jpg" alt="MMWall Offerwall" class="offerwall-image" onclick="redirectToOfferwall('mmwall')">
+            </div>
+
+            <!-- Lootably -->
+            <div class="earn-card">
+                <img src="assets/lootably.jpg" alt="Lootably Offerwall" class="offerwall-image" onclick="redirectToOfferwall('lootably')">
+            </div>
+
+            <!-- Timewall -->
+            <div class="earn-card">
+                <img src="assets/timewall.jpg" alt="Timewall Offerwall" class="offerwall-image" onclick="redirectToOfferwall('timewall')">
+            </div>
+
+            <!-- Cheddar -->
+            <div class="earn-card">
+                <img src="assets/cheddar.jpg" alt="Cheddar Offerwall" class="offerwall-image" onclick="redirectToOfferwall('cheddar')">
+            </div>
+
+            <!-- Revenue Universe -->
+            <div class="earn-card">
+                <img src="assets/revu.jpg" alt="Revenue Universe Offerwall" class="offerwall-image" onclick="redirectToOfferwall('revu')">
+            </div>
+
+            <!-- AdGem -->
+            <div class="earn-card">
+                <img src="assets/adgem.jpg" alt="AdGem Offerwall" class="offerwall-image" onclick="redirectToOfferwall('adgem')">
+            </div>
+
+            <!-- Monlix -->
+            <div class="earn-card">
+                <img src="assets/monlix.jpg" alt="Monlix Offerwall" class="offerwall-image" onclick="redirectToOfferwall('monlix')">
+            </div>
+
+            <!-- Bitlabs -->
+            <div class="earn-card">
+                <img src="assets/bitlabs.jpg" alt="Bitlabs Offerwall" class="offerwall-image" onclick="redirectToOfferwall('bitlabs')">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToOfferwall(offerwall) {
+            const userId = "USER_ID"; // This should be dynamically set based on the logged-in user
+            const urls = {
+                notik: `https://notik.me/coins?user=${userId}`,
+                adgate: `https://wall.adgaterewards.com/ofer/${userId}`,
+                torox: `https://torox.io/users/${userId}`,
+                ayet: `https://www.ayetstudios.com/offers/${userId}`,
+                adscend: `https://adscendmedia.com/offerwall/${userId}`,
+                mmwall: `https://mmwall.io/wall/${userId}`,
+                lootably: `https://wall.lootably.com/?uid=${userId}`,
+                timewall: `https://timewall.io/users/${userId}`,
+                cheddar: `https://www.getcheddar.io/wall/${userId}`,
+                revu: `https://publishers.revenueuniverse.com/wall/${userId}`,
+                adgem: `https://api.adgem.com/v1/wall?playerid=${userId}`,
+                monlix: `https://offer.monlix.com/${userId}`,
+                bitlabs: `https://web.bitlabs.ai/${userId}`
+            };
+            
+            if (urls[offerwall]) {
+                window.location.href = urls[offerwall];
+            }
+        }
+
+        // Update stats periodically
+        function updateStats() {
+            // Simulate real-time updates - replace with actual API calls
+            document.getElementById('tasks-completed').textContent = 
+                Math.floor(Math.random() * 1000) + 500;
+            
+            document.getElementById('active-users').textContent = 
+                Math.floor(Math.random() * 100) + 50;
+            
+            document.getElementById('total-earned').textContent = 
+                '$' + (Math.random() * 1000).toFixed(2);
+        }
+
+        // Update time online
+        function updateTimeOnline() {
+            const timeElement = document.getElementById('time-online');
+            let minutes = 0;
+            
+            setInterval(() => {
+                minutes++;
+                const hours = Math.floor(minutes / 60);
+                const mins = minutes % 60;
+                timeElement.textContent = `${hours}:${mins.toString().padStart(2, '0')}`;
+            }, 60000); // Update every minute
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updateStats();
+            updateTimeOnline();
+            // Update stats every 30 seconds
+            setInterval(updateStats, 30000);
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.fixed-header');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html> 

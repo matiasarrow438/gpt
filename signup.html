@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Earn Cash Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signup-container {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+        }
+
+        .signup-container h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background: #222;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #ff3333;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
+
+        .password-requirements {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .signup-btn {
+            background: #ff3333;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+
+        .signup-btn:hover {
+            background: #cc0000;
+        }
+
+        .error-message {
+            color: #ff3333;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .terms {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+
+        .terms a {
+            color: #ff3333;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+        }
+
+        .login-link a {
+            color: #ff3333;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            display: none;
+            color: #00ff00;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Create Account</h1>
+        <form id="signup-form" onsubmit="return handleSignup(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required minlength="3" maxlength="20">
+                <div class="error-message" id="username-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required minlength="8">
+                <div class="password-requirements">
+                    Must be at least 8 characters long and include numbers and letters
+                </div>
+                <div class="error-message" id="password-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <div class="error-message" id="confirm-password-error"></div>
+            </div>
+
+            <button type="submit" class="signup-btn">Create Account</button>
+
+            <div class="success-message" id="success-message">
+                Account created successfully! Redirecting...
+            </div>
+
+            <div class="terms">
+                By signing up, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>
+            </div>
+
+            <div class="login-link">
+                Already have an account? <a href="login.html">Log in</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        async function handleSignup(event) {
+            event.preventDefault();
+            
+            // Reset error messages
+            document.querySelectorAll('.error-message').forEach(elem => {
+                elem.style.display = 'none';
+            });
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Validation
+            let isValid = true;
+
+            // Username validation
+            if (username.length < 3) {
+                document.getElementById('username-error').textContent = 'Username must be at least 3 characters long';
+                document.getElementById('username-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email address';
+                document.getElementById('email-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // Password validation
+            const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('password-error').textContent = 'Password must contain at least 8 characters, including letters and numbers';
+                document.getElementById('password-error').style.display = 'block';
+                isValid = false;
+            }
+
+            // Confirm password validation
+            if (password !== confirmPassword) {
+                document.getElementById('confirm-password-error').textContent = 'Passwords do not match';
+                document.getElementById('confirm-password-error').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                try {
+                    // Replace with your actual API endpoint
+                    const response = await fetch('/api/signup', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            username,
+                            email,
+                            password
+                        })
+                    });
+
+                    if (response.ok) {
+                        document.getElementById('success-message').style.display = 'block';
+                        setTimeout(() => {
+                            window.location.href = '/dashboard';
+                        }, 2000);
+                    } else {
+                        const data = await response.json();
+                        throw new Error(data.message || 'Signup failed');
+                    }
+                } catch (error) {
+                    document.getElementById('username-error').textContent = error.message;
+                    document.getElementById('username-error').style.display = 'block';
+                }
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html> 
